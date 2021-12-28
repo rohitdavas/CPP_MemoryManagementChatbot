@@ -10,8 +10,11 @@ GraphNode::~GraphNode()
 {
     //// STUDENT CODE
     ////
-
-    delete _chatBot; 
+	
+  // warm up exercise .
+  // the distructor is not setup up properly causing seg fault. 
+  // removing it. 
+    // delete _chatBot; 
 
     ////
     //// EOF STUDENT CODE
