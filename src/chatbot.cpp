@@ -45,6 +45,76 @@ ChatBot::~ChatBot()
 //// STUDENT CODE
 ////
 
+// COPY 
+ChatBot::ChatBot(const ChatBot &s){
+  // COPY 
+  _chatLogic = s._chatLogic; 
+  _rootNode = s._rootNode; 
+  _image = new wxBitmap(*s._image);
+  
+  std::cout << "INFO : copy construct ran successfully" <<std::endl;
+  std::cout <<"INFO : from : " << &s << " - to : " << this << std::endl;
+}
+
+ChatBot::ChatBot(ChatBot &&s){
+ 	//MOVE
+ 	// assign the variable . moving.
+  std::cout << "INFO : MOVE  - assignment in moving" <<std::endl;
+  
+  // assignment
+  _chatLogic = s._chatLogic;
+  _rootNode = s._rootNode; 
+  _image = s._image;
+  
+  // nullify
+  std::cout << "INFO : MOVE - nullify in move" << std::endl;
+  s._chatLogic = nullptr;
+  s._rootNode = nullptr;
+  s._image = nullptr;
+ 
+}
+
+// COPY 
+ChatBot &ChatBot::operator=(const ChatBot &s)
+{
+ 
+  // check for duplicacy
+  if (this == &s)
+    return *this; 
+    
+   delete _image; 
+  _chatLogic = s._chatLogic; 
+  _rootNode = s._rootNode; 
+  _image = new wxBitmap(*s._image); 
+  std::cout << " INFO _ COPY _ Constructor _ copy constructor in chatbot ran." <<std::endl;
+  
+}
+
+// MOVE 
+ChatBot &ChatBot::operator=(ChatBot &&s){
+	
+  if (this == &s)
+    return *this; 
+  
+  delete _image;
+  
+  // move
+  std::cout << "INFO _ MOVE Operation _ referencing ..." <<std::endl;
+  _chatLogic = s._chatLogic;
+  _rootNode = s._rootNode;
+  _image = s._image;
+  
+  //nullify old
+  std::cout << "INFO _ MOVE Operation _ Nullifyping ..." <<std::endl;
+  s._chatLogic = nullptr;
+  s._rootNode = nullptr;
+  s._image = nullptr;
+ 
+  return *this; 
+}
+
+
+
 ////
 //// EOF STUDENT CODE
 
